@@ -1,0 +1,47 @@
+[package]
+name = "vantage-vue-receiver-esp32-rust"
+version = "1.0.0"
+authors = ["Mathieu Lescure <contact@retameur.com>"]
+edition = "2021"
+resolver = "2"
+rust-version = "1.77"
+
+[[bin]]
+name = "vantage-vue-receiver-esp32-rust"
+harness = false # do not use the built in cargo test harness -> resolve rust-analyzer errors
+
+[profile.release]
+opt-level = "s"
+
+[profile.dev]
+debug = true    # Symbols are nice and they don't increase the size on Flash
+opt-level = "z"
+
+[features]
+default = ["std", "embassy", "esp-idf-svc/native"]
+
+pio = ["esp-idf-svc/pio"]
+std = ["alloc", "esp-idf-svc/binstart", "esp-idf-svc/std"]
+alloc = ["esp-idf-svc/alloc"]
+nightly = ["esp-idf-svc/nightly"]
+experimental = ["esp-idf-svc/experimental"]
+embassy = ["esp-idf-svc/embassy-sync", "esp-idf-svc/critical-section", "esp-idf-svc/embassy-time-driver"]
+
+[dependencies]
+anyhow = { version = "1.0.89" }
+log = { version = "0.4", default-features = false }
+esp-idf-svc = { version = "0.49", default-features = false }
+crc16 = { version = "0.4.0" }
+shared-bus = { version = "0.3.1" } # Allow to share the same I2C bus between bmp280-ehal and aht20-driver 
+bmp280-ehal = { version = "0.0.6" }
+
+# For whatever reason, I can't compile with the original driver due to some linker errors
+# https://github.com/anglerud/aht20-driver/issues/9
+# So I'm using a fork with all calls to defmt macros removed.
+#aht20-driver = { version = "1.2.1" }
+aht20-driver = { git = "https://github.com/retameur/aht20-driver", branch="remove-defmt", version = "1.2.1" }
+
+rfm69 = { version = "0.6.0" }
+
+[build-dependencies]
+embuild = "0.32.0"
