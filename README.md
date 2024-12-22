@@ -7,7 +7,8 @@ An ESP32-S3 program to receive data from a Davis Vantage Vue sensor suite (Europ
 
 | ESP32 | RFM69 | AHT20+BMP280 | Comment |
 |-------|-------|--------------|---------|
-| 15    | DIO0  |              |         |
+| 8     | DIO0  |              |         |
+| 15    | NSS   |              |         |
 | 16    | SCK   |              |         |
 | 17    | MOSI  |              |         |
 | 18    | MISO  |              |         |
