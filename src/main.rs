@@ -62,8 +62,8 @@ fn main() -> anyhow::Result<()> {
 
     let i2c_config = I2cConfig::new().scl_enable_pullup(true).sda_enable_pullup(true).baudrate(Hertz(100_000));
 
-    let sda = pins.gpio3;
-    let scl = pins.gpio9;
+    let sda = pins.gpio14;
+    let scl = pins.gpio21;
     let i2c_driver = I2cDriver::new(peripherals.i2c1, sda, scl, &i2c_config)?;
     
     // As the I2C bus is used by two sensors (on the same module), we use the shared_bus crate.
@@ -91,10 +91,10 @@ fn main() -> anyhow::Result<()> {
     // RFM69 -------------------------------
     
     let pin_rfm69_irq = pins.gpio8; // DI0 on RFM69
-    let pin_sclk = pins.gpio16; // SCK on RFM69
-    let pin_cs = pins.gpio15; // NSS on RFM69
-    let pin_sdo = pins.gpio17; // MOSI on RFM69
-    let pin_sdi = Some(pins.gpio18); // MISO on RFM69
+    let pin_sclk = pins.gpio7; // SCK on RFM69
+    let pin_cs = pins.gpio6; // NSS on RFM69
+    let pin_sdo = pins.gpio15; // MOSI on RFM69
+    let pin_sdi = Some(pins.gpio16); // MISO on RFM69
     
     // Subscribe to RFM69 new message interrupt
     let mut rfm69_irq = PinDriver::input(pin_rfm69_irq)?;

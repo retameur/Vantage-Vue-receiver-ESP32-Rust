@@ -8,12 +8,12 @@ An ESP32-S3 program to receive data from a Davis Vantage Vue sensor suite (Europ
 | ESP32 | RFM69 | AHT20+BMP280 | Comment |
 |-------|-------|--------------|---------|
 | 8     | DIO0  |              |         |
-| 15    | NSS   |              |         |
-| 16    | SCK   |              |         |
-| 17    | MOSI  |              |         |
-| 18    | MISO  |              |         |
+| 6     | NSS   |              |         |
+| 7     | SCK   |              |         |
+| 15    | MOSI  |              |         |
+| 16    | MISO  |              |         |
 |       | ANT   |              | Connect a wire of about 8.5 cm or a proper antenna |
-| 3     |       |  SDA         |         |
-| 9     |       |  SCL         |         |
+| 14    |       |  SDA         |         |
+| 21    |       |  SCL         |         |
 | GND   | GND   |  GND         |         |
 | 3V3   | 3.3V  |  VDD         |         |
