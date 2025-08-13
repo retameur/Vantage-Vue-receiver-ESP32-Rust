@@ -233,7 +233,7 @@ fn main() -> anyhow::Result<()> {
         }
         
         
-        // A very crude system to make the WeeWx MeteoStrick driver happy
+        // A very crude system to make the WeeWx MeteoStick driver happy
         let mut buf = [0_u8; 1];
         match uart.read(&mut buf, TickType::new_millis(10).ticks()) {
             Ok(len) => {
